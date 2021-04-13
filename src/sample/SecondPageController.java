@@ -2,31 +2,32 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import org.apache.commons.math3.distribution.FDistribution;
 
 import java.net.URL;
-import java.text.Format;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-
 
 public class SecondPageController implements Initializable {
 
     public static int n;
     public static int m;
-    public Label alternatives;
-    public Label measurements;
+
 
     @FXML
+    public Label alternatives;
+    @FXML
+    public Label measurements;
+    @FXML
+    public Label result;
+    @FXML
     public Pane p;
+
+    private int numeratorDegOfFreedom;
+    private int denominatorDegOfFreedom;
 
 //    public GridPane pane = new GridPane();
 
@@ -54,6 +55,7 @@ public class SecondPageController implements Initializable {
                 matrix[i][j] = new TextField();
                 matrix[i][j].setMaxWidth(80);
                 matrix[i][j].relocate(j,i);
+                matrix[i][j].setStyle("-fx-background-color: #303841;  -fx-border-color:  #3a4750; -fx-border-width: 1.5; -fx-text-fill: #ffffff;");
                 pane.add(matrix[i][j],j,i);
 
               //  pane.getChildren().add( matrix[i][j]);
@@ -68,6 +70,8 @@ public class SecondPageController implements Initializable {
         double [] colMean = new double[m];
         double totalMean;
         double totalSum = 0;
+        numeratorDegOfFreedom = m-1;
+        denominatorDegOfFreedom = m*(n-1);
 
         // Racunanje y.. i  y.j
         for (int j =0; j<m; j++)
@@ -103,14 +107,33 @@ public class SecondPageController implements Initializable {
         }
         System.out.println("SSE="+sse);
 
+        double sst = sse+ssa;
+
         // Racunanje F
-        double FCalculated = (ssa/(m-1))/(sse/(m*(n-1)));
+        double FCalculated = (ssa/numeratorDegOfFreedom)/(sse/(denominatorDegOfFreedom));
         System.out.println("Fcalculated= "+ FCalculated);
 
-        FDistribution fDistribution= new FDistribution(m-1,m*(n-1),0.95);
 
+        FDistribution fDistribution= new FDistribution(numeratorDegOfFreedom,denominatorDegOfFreedom);
         double FTab = fDistribution.inverseCumulativeProbability(0.95);
+
         System.out.println("Ftabelarno=" + FTab);
-        System.out.println("Sistemi se "+ (FCalculated>FTab ? "razlikuju." : "ne razlikuju.") );
+
+        String format = "Izvor varijacije\t Alternative\t   Greska\t  Ukupno\n"+
+                  "____________________________________________________";
+
+        result.setText("Sistemi se "+ (FCalculated>FTab ? "razlikuju." : "ne razlikuju.") );
+    }
+
+    public void clear()
+    {
+        for(int i =0;i<n;i++)
+        {
+            for(int j =0; j<n; j++)
+            {
+                matrix[i][j].setText("");
+            }
+        }
+        result.setText("");
     }
 }

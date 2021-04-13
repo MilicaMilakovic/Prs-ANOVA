@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -23,24 +24,27 @@ public class Controller {
             n = Integer.parseInt(brojMjerenja.getText());
             m = Integer.parseInt(brojAlternativa.getText());
 
+            if(m>15 || n>15)
+                throw new Exception();
             SecondPageController.n = n;
             SecondPageController.m = m;
+
+            Stage primaryStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("SecondPage.fxml"));
+            primaryStage.setTitle("ANOVA");
+            primaryStage.setScene(new Scene(root, 600, 400));
+
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/calculator.png")));
+
+            primaryStage.show();
+            Stage stage = (Stage) btn.getScene().getWindow();
+            stage.close();
+
         }catch (Exception e)
         {
             e.printStackTrace();
         }
 
-//        System.out.println("broj mjerenja:" + n);
-//        System.out.println("broj alternativa:" + m);
-
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("SecondPage.fxml"));
-        primaryStage.setTitle("ANOVA");
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
-
-        Stage stage = (Stage) btn.getScene().getWindow();
-        stage.close();
     }
 
 }

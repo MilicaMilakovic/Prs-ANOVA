@@ -5,12 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <TextField fx:id="brojMjerenja" layoutX="271.0" layoutY="149.0" />
-      <TextField fx:id="brojAlternativa" layoutX="271.0" layoutY="199.0" />
-      <Label layoutX="181.0" layoutY="153.0" text="Broj mjerenja" />
-      <Label layoutX="181.0" layoutY="203.0" text="Broj alternativa" />
-      <Button fx:id="btn" layoutX="377.0" layoutY="276.0" mnemonicParsing="false" onAction="#calculate" text="Dalje" />
+      <TextField fx:id="brojMjerenja" layoutX="229.0" layoutY="99.0" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #303841; -fx-border-color: #3a4750; -fx-border-width: 1.5;" stylesheets="@../resources/TextField.css" />
+      <TextField fx:id="brojAlternativa" layoutX="229.0" layoutY="174.0" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #303841; -fx-border-color: #3a4750; -fx-border-width: 1.5;" stylesheets="@../resources/TextField.css" />
+      <Label layoutX="229.0" layoutY="73.0" text="Broj mjerenja" textFill="WHITE" />
+      <Label layoutX="229.0" layoutY="154.0" text="Broj alternativa" textFill="WHITE" />
+      <Button fx:id="btn" layoutX="229.0" layoutY="246.0" mnemonicParsing="false" onAction="#calculate" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #00adb5;" stylesheets="@../resources/Button.css" text="Dalje" />
+      <Label layoutX="194.0" layoutY="334.0" text="Maksimalan broj mjerenja i alternativa je 15" textFill="#00adb5" />
    </children>
 </AnchorPane>
