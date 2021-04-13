@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SecondPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SecondPageController">
    <children>
       <ImageView fitHeight="362.0" fitWidth="364.0" layoutX="329.0" layoutY="-97.0" opacity="0.09" preserveRatio="true" rotate="-176.2">
          <image>
@@ -16,11 +21,39 @@
       </ImageView>
       <Label fx:id="alternatives" layoutX="12.0" layoutY="12.0" textFill="WHITE" />
       <Label fx:id="measurements" layoutX="12.0" layoutY="35.0" textFill="WHITE" />
-      <Pane fx:id="p" layoutX="14.0" layoutY="67.0" prefHeight="285.0" prefWidth="551.0">
-         <children>
-            <Label fx:id="result" layoutX="14.0" layoutY="227.0" textFill="WHITE" />
-         </children></Pane>
-      <Button layoutX="129.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculate" stylesheets="@../resources/Button.css" text="Izracunaj parametre" />
-      <Button layoutX="271.0" layoutY="15.0" mnemonicParsing="false" onAction="#clear" style="-fx-background-color: #eeeeee; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #eeeeee; -fx-border-width: 2;" text="Obrisi polja" textFill="#126e82" />
+      <Pane fx:id="p" layoutX="14.0" layoutY="172.0" prefHeight="264.0" prefWidth="551.0" />
+      <Button layoutX="129.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculate" stylesheets="@../resources/Button.css" text="Izracunaj parametre">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="271.0" layoutY="15.0" mnemonicParsing="false" onAction="#clear" style="-fx-background-color: #eeeeee; -fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: #eeeeee; -fx-border-width: 2;" text="Obrisi polja" textFill="#126e82">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="result" layoutX="12.0" layoutY="67.0" prefHeight="58.0" prefWidth="323.0" textFill="WHITE" />
+      <Line endX="293.40234375" layoutX="50.0" layoutY="57.0" startX="-43.59765625">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0" startY="0.023809523809523808">
+               <stops>
+                  <Stop color="#00adb5" />
+                  <Stop color="#9f41db" offset="0.31800766283524884" />
+                  <Stop color="#5c135cb1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#5e135e" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Line>
+      <Label fx:id="label" layoutX="14.0" layoutY="131.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

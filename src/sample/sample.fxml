@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,10 @@
       <TextField fx:id="brojAlternativa" layoutX="229.0" layoutY="174.0" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #303841; -fx-border-color: #3a4750; -fx-border-width: 1.5;" stylesheets="@../resources/TextField.css" />
       <Label layoutX="229.0" layoutY="73.0" text="Broj mjerenja" textFill="WHITE" />
       <Label layoutX="229.0" layoutY="154.0" text="Broj alternativa" textFill="WHITE" />
-      <Button fx:id="btn" layoutX="229.0" layoutY="246.0" mnemonicParsing="false" onAction="#calculate" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #00adb5;" stylesheets="@../resources/Button.css" text="Dalje" />
+      <Button fx:id="btn" layoutX="229.0" layoutY="246.0" mnemonicParsing="false" onAction="#calculate" prefHeight="36.0" prefWidth="149.0" stylesheets="@../resources/Button.css" text="Dalje">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="194.0" layoutY="334.0" text="Maksimalan broj mjerenja i alternativa je 15" textFill="#00adb5" />
    </children>
 </AnchorPane>

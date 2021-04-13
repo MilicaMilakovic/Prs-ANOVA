@@ -23,6 +23,7 @@ public class SecondPageController implements Initializable {
     public Label measurements;
     @FXML
     public Label result;
+    public Label label;
     @FXML
     public Pane p;
 
@@ -41,11 +42,10 @@ public class SecondPageController implements Initializable {
 
         matrix = new TextField[n][m];
         GridPane pane = new GridPane();
-//        pane.setMaxWidth(200);
-//        pane.setMaxHeight(200);
+
         pane.setHgap(10);
         pane.setVgap(10);
-//        pane.setGridLinesVisible(true);
+
         for(int i = 0; i < n; i++)
         {
             matrix[i] = new TextField[m];
@@ -57,8 +57,6 @@ public class SecondPageController implements Initializable {
                 matrix[i][j].relocate(j,i);
                 matrix[i][j].setStyle("-fx-background-color: #303841;  -fx-border-color:  #3a4750; -fx-border-width: 1.5; -fx-text-fill: #ffffff;");
                 pane.add(matrix[i][j],j,i);
-
-              //  pane.getChildren().add( matrix[i][j]);
 
             }
         }
@@ -95,7 +93,6 @@ public class SecondPageController implements Initializable {
             ssa += Math.pow(v - totalMean, 2);
         }
         ssa*=n;
-        System.out.println("SSA="+ ssa);
 
         double sse =0;
         for(int j =0; j<m; j++)
@@ -105,35 +102,39 @@ public class SecondPageController implements Initializable {
                 sse+=Math.pow((Double.parseDouble(matrix[i][j].getText())-colMean[j]),2);
             }
         }
-        System.out.println("SSE="+sse);
+
 
         double sst = sse+ssa;
 
         // Racunanje F
         double FCalculated = (ssa/numeratorDegOfFreedom)/(sse/(denominatorDegOfFreedom));
-        System.out.println("Fcalculated= "+ FCalculated);
-
 
         FDistribution fDistribution= new FDistribution(numeratorDegOfFreedom,denominatorDegOfFreedom);
         double FTab = fDistribution.inverseCumulativeProbability(0.95);
 
         System.out.println("Ftabelarno=" + FTab);
 
-        String format = "Izvor varijacije\t Alternative\t   Greska\t  Ukupno\n"+
-                  "____________________________________________________";
-
-        result.setText("Sistemi se "+ (FCalculated>FTab ? "razlikuju." : "ne razlikuju.") );
+        result.setText("SSA = " + String.format("%.4f",ssa) + " \t " +
+                       "SSE = " + String.format("%.4f",sse) + " \t\t " +
+                       "SST = " + String.format("%.4f",sst) + " \t \n" +
+                       "k-1 = " + numeratorDegOfFreedom + " \t\t " +
+                        "k(n-1) =" +denominatorDegOfFreedom + " \t\t " +
+                        "kn-1 = " + (numeratorDegOfFreedom+denominatorDegOfFreedom) + " \t \n" +
+                        "Fizracunato = " + String.format("%.2f",FCalculated) + " \t\t\t\t " +
+                        "Ftabelarno = " + String.format("%.2f",FTab) + " \t ");
+        label.setText("Sistemi se "+ (FCalculated>FTab ? "razlikuju." : "ne razlikuju."));
     }
 
     public void clear()
     {
         for(int i =0;i<n;i++)
         {
-            for(int j =0; j<n; j++)
+            for(int j =0; j<m; j++)
             {
                 matrix[i][j].setText("");
             }
         }
         result.setText("");
+        label.setText("");
     }
 }
