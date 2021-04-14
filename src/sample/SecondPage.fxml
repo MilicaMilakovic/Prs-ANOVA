@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,16 +13,23 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SecondPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" style="-fx-background-color: #303841;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SecondPageController">
    <children>
-      <ImageView fitHeight="362.0" fitWidth="364.0" layoutX="329.0" layoutY="-97.0" opacity="0.09" preserveRatio="true" rotate="-176.2">
+      <ImageView fitHeight="362.0" fitWidth="364.0" layoutX="419.0" layoutY="115.0" opacity="0.16" preserveRatio="true" rotate="-57.5">
          <image>
             <Image url="@../resources/—Pngtree—blue-purple%20faulty%20neon%20round%20border_4568853.png" />
          </image>
       </ImageView>
       <Label fx:id="alternatives" layoutX="12.0" layoutY="12.0" textFill="WHITE" />
       <Label fx:id="measurements" layoutX="12.0" layoutY="35.0" textFill="WHITE" />
-      <Pane fx:id="p" layoutX="14.0" layoutY="172.0" prefHeight="264.0" prefWidth="551.0" />
+      <Pane fx:id="p" layoutX="12.0" layoutY="222.0" prefHeight="264.0" prefWidth="551.0">
+         <children>
+            <ImageView fitHeight="271.0" fitWidth="290.0" layoutX="-135.0" layoutY="115.0" opacity="0.26" preserveRatio="true" rotate="162.1">
+               <image>
+                  <Image url="@../resources/—Pngtree—blue-purple%20faulty%20neon%20round%20border_4568853.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
       <Button layoutX="129.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculate" stylesheets="@../resources/Button.css" text="Izracunaj parametre">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -31,7 +39,7 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <Label fx:id="result" layoutX="12.0" layoutY="67.0" prefHeight="58.0" prefWidth="323.0" textFill="WHITE" />
-      <Line endX="293.40234375" layoutX="50.0" layoutY="57.0" startX="-43.59765625">
+      <Line endX="336.1209716796875" layoutX="50.0" layoutY="57.0" startX="-43.59765625">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0" startY="0.023809523809523808">
                <stops>
@@ -50,7 +58,24 @@
             </LinearGradient>
          </fill>
       </Line>
-      <Label fx:id="label" layoutX="14.0" layoutY="131.0" textFill="WHITE">
+      <Label fx:id="label" layoutX="13.0" layoutY="137.0" prefHeight="85.0" prefWidth="323.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="kontrastiLabel" layoutX="403.0" layoutY="15.0" prefHeight="36.0" prefWidth="184.0" text="Kontrasti" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstInput" layoutX="406.0" layoutY="63.0" prefHeight="25.0" prefWidth="72.0" stylesheets="@../resources/TextField.css" visible="false" />
+      <TextField fx:id="secondInput" layoutX="505.0" layoutY="62.0" prefHeight="25.0" prefWidth="72.0" stylesheets="@../resources/TextField.css" visible="false" />
+      <Button fx:id="calculateContrast" layoutX="437.0" layoutY="102.0" mnemonicParsing="false" onAction="#contrast" stylesheets="@../resources/Button.css" text="Izracunaj kontraste" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="contrastResult" layoutX="371.0" layoutY="135.0" prefHeight="85.0" prefWidth="266.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

@@ -32,7 +32,7 @@ public class Controller {
             Stage primaryStage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("SecondPage.fxml"));
             primaryStage.setTitle("ANOVA");
-            primaryStage.setScene(new Scene(root, 600, 450));
+            primaryStage.setScene(new Scene(root, 650, 500));
 
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/calculator.png")));
 
