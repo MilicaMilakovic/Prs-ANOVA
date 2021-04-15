@@ -18,7 +18,6 @@ public class SecondPageController implements Initializable {
     public static int n;
     public static int m;
 
-
     @FXML
     public Label alternatives;
     @FXML
@@ -49,8 +48,6 @@ public class SecondPageController implements Initializable {
     private double ssa;
     private double sse;
     private double sst;
-
-//    public GridPane pane = new GridPane();
 
     public static TextField[][] matrix = new TextField[n][m];
 
@@ -115,13 +112,11 @@ public class SecondPageController implements Initializable {
         System.out.println("y..="+totalMean);
 
         // Racunanje SSA i SSE
-        //double ssa =0;
         for (double v : colMean) {
             ssa += Math.pow(v - totalMean, 2);
         }
         ssa*=n;
 
-        //double sse =0;
         for(int j =0; j<m; j++)
         {
             for(int i =0; i<n; i++)
@@ -130,8 +125,7 @@ public class SecondPageController implements Initializable {
             }
         }
 
-
-         sst = sse+ssa;
+        sst = sse+ssa;
 
         // Racunanje F
         double FCalculated = (ssa/numeratorDegOfFreedom)/(sse/(denominatorDegOfFreedom));
@@ -139,15 +133,14 @@ public class SecondPageController implements Initializable {
         FDistribution fDistribution= new FDistribution(numeratorDegOfFreedom,denominatorDegOfFreedom);
         double FTab = fDistribution.inverseCumulativeProbability(0.95);
 
-
         result.setText("SSA = " + String.format("%.4f",ssa) + " \t " +
                        "SSE = " + String.format("%.4f",sse) + " \t\t " +
                        "SST = " + String.format("%.4f",sst) + "  \n" +
                        "k-1 = " + numeratorDegOfFreedom + " \t\t " +
                         "k(n-1) =" +denominatorDegOfFreedom + " \t\t " +
                         "kn-1 = " + (numeratorDegOfFreedom+denominatorDegOfFreedom) + "  \n" +
-                        "Fizracunato = " + String.format("%.2f",FCalculated) + " \t\t\t\t " +
-                        "Ftabelarno = " + String.format("%.2f",FTab) + " \t ");
+                        "Fizracunato = " + String.format("%.2f",FCalculated) + " \n" +
+                        "Ftabelarno  = " + String.format("%.2f",FTab) + " \t ");
 
         label.setText("Sa nivoom povjerenja od 95% zakljucuje se da "+ (FCalculated > FTab ? "postoji " : "ne postoji") + "\nstatisticki znacajna razlika izmedju sistema.");
 
@@ -156,6 +149,7 @@ public class SecondPageController implements Initializable {
         firstInput.setVisible(true);
         secondInput.setVisible(true);
         calculateContrast.setVisible(true);
+
     }
 
     public void clear()
@@ -181,7 +175,6 @@ public class SecondPageController implements Initializable {
 
         //kontrast
         double c = alphas[i] - alphas[j];
-        System.out.println("c= " +c);
         double seSqrd = sse/denominatorDegOfFreedom;
 
         // sumarna devijacija
@@ -191,25 +184,20 @@ public class SecondPageController implements Initializable {
         double c1;
         double c2;
 
-        TDistribution tDistribution = new TDistribution(denominatorDegOfFreedom,0.95);
+        TDistribution tDistribution = new TDistribution(denominatorDegOfFreedom);
         double t = tDistribution.inverseCumulativeProbability(0.95);
-        double m = tDistribution.cumulativeProbability(denominatorDegOfFreedom);
 
         System.out.println("t = "+t);
-        System.out.println(m);
 
         c1 = c - t*sc;
         c2 = c + t*sc;
 
         contrastResult.setText(" c = " + String.format("%.4f",c) + "\t s = " + String.format("%.4f",sc) +" \t t = "+ String.format("%.3f",t)
-                                + "\n 95% : (c1,c2) = (" + String.format("%.4f",c1) + ","
+                                + "\n 90% : (c1,c2) = (" + String.format("%.4f",c1) + ","
                                                     + String.format("%.4f",c2) + ")"
                                 + "\n Buduci da dobijeni interval povjerenja \n"
                                 + ((c1<=0 && c2>=0) ? " ukljucuje" : " ne ukljucuje ") + " nulu, izmedju sistema "+i+" i " +j
                                 + ((c1<=0 && c2>=0) ? " \n ne postoji " : " \npostoji ") + " statisticki znacajna razlika." );
-
-
-
 
     }
 }
